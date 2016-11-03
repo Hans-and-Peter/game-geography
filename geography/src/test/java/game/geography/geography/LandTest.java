@@ -7,8 +7,8 @@ import static org.mockito.Mockito.verify;
 
 public class LandTest {
 
-    LandName landName = new LandName("Name of land is irrelevant");
-    OwnerName ownerName = new OwnerName("Name of owner is irrelevant");
+    private final LandName landName = new LandName("Name of land is irrelevant");
+    private final OwnerName ownerName = new OwnerName("Name of owner is irrelevant");
 
     @Test
     public void should_write_owner_back_to_map() {

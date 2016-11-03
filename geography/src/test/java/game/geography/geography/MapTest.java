@@ -9,12 +9,11 @@ import static org.hamcrest.core.IsNot.not;
 
 public class MapTest {
 
-    LandName landName = new LandName("Stormland");
+    private Map map = new Map(new InMemoryLandRepository());
+    private final LandName landName = new LandName("Stormland");
 
     @Test
     public void should_find_land() {
-        Map map = new Map();
-
         Land stormland = map.lookup(landName);
 
         assertThat(stormland.named(), is(landName));
@@ -22,8 +21,6 @@ public class MapTest {
 
     @Test @Ignore("we would like to write test that does not expose inner state like name")
     public void should_return_land_consistently() {
-        Map map = new Map();
-
         Land stormland1 = map.lookup(landName);
         Land stormland2 = map.lookup(landName);
         Land rainland = map.lookup(new LandName("Rainland"));
@@ -34,8 +31,6 @@ public class MapTest {
 
     @Test
     public void should_persist_changes_in_land_ownership() {
-        Map map = new Map();
-
         Land land = new Land(landName, map);
         land.owned(new Owner(new OwnerName("Chief Maly")));
 

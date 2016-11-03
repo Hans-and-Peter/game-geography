@@ -2,7 +2,6 @@ package game.geography.geography;
 
 import java.util.HashMap;
 
-// TODO does not go into domain!
 public class InMemoryLandRepository implements LandRepository {
     private final HashMap<LandName, Land> landByName = new HashMap<>();
 

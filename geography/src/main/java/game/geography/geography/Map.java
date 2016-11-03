@@ -2,12 +2,13 @@ package game.geography.geography;
 
 public class Map implements LandOwnerChangeListener {
 
-    private final LandRepository landRepository = new InMemoryLandRepository();
+    private final LandRepository landRepository;
 
-    public Map() {
+    public Map(LandRepository landRepository) {
         // in first version we have two lands
-        landRepository.save(new Land(new LandName("Stormland"), this));
-        landRepository.save(new Land(new LandName("Rainland"), this));
+        this.landRepository = landRepository;
+        this.landRepository.save(new Land(new LandName("Stormland"), this));
+        this.landRepository.save(new Land(new LandName("Rainland"), this));
         // TODO later, maybe its own class of LandGenerator or Seed
     }
 
