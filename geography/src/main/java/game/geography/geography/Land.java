@@ -17,6 +17,7 @@ public class Land {
     }
 
     public LandName named() {
+        // TODO this is only here for the tests. State is given outside. Grrr.
         return name;
     }
 }
