@@ -14,4 +14,8 @@ public class Land {
     public Owner ownedBy() {
         return owner;
     }
+
+    public String named() {
+        return null;
+    }
 }
