@@ -1,10 +1,11 @@
 package game.geography.geography;
 
 public class Land {
+    private final LandName name;
     private Owner owner;
 
     public Land(LandName name) {
-
+        this.name = name;
     }
 
     public void owned(Owner owner) {
@@ -15,7 +16,7 @@ public class Land {
         return owner;
     }
 
-    public String named() {
-        return null;
+    public LandName named() {
+        return name;
     }
 }
