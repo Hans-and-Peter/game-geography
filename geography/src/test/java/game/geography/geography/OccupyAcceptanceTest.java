@@ -8,7 +8,7 @@ import static org.hamcrest.core.Is.is;
 public class OccupyAcceptanceTest {
 
     @Test
-    public void should_own_land_when_occuping() {
+    public void should_own_land_when_occupying() {
         Owner newOwner = new Owner(new OwnerName("King Ragnar"));
         Map map = new Map(new InMemoryLandRepository());
         Land land = map.lookup(new LandName("Stormland"));
