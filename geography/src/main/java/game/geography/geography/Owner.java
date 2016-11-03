@@ -1,15 +1,17 @@
 package game.geography.geography;
 
 public class Owner {
-    public Owner(OwnerName ownerName) {
+    private final OwnerName name;
 
+    public Owner(OwnerName name) {
+        this.name = name;
     }
 
     public void occupy(Land land) {
-
+        land.owned(this);
     }
 
     public OwnerName named() {
-        return null;
+        return name;
     }
 }
