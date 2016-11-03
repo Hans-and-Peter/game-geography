@@ -17,6 +17,6 @@ public class LandTest {
 
         land.owned(new Owner(ownerName));
 
-        verify(listener).landOwnerHasChanged(landName, ownerName);
+        verify(listener).landOwnerHasChanged(land);
     }
 }

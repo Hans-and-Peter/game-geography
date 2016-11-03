@@ -36,7 +36,8 @@ public class MapTest {
     public void should_persist_changes_in_land_ownership() {
         Map map = new Map();
 
-        map.landOwnerHasChanged(landName, new OwnerName("Chief Maly"));
+        Land land = new Land(landName, map);
+        land.owned(new Owner(new OwnerName("Chief Maly")));
 
         Land stormland = map.lookup(landName);
         assertThat(stormland.ownedBy().named(), is(new OwnerName("Chief Maly")));

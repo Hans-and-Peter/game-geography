@@ -2,6 +2,6 @@ package game.geography.geography;
 
 public interface LandOwnerChangeListener {
 
-    void landOwnerHasChanged(LandName land, OwnerName owner);
+    void landOwnerHasChanged(Land land);
 
 }
