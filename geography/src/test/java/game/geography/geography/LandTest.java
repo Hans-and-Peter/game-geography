@@ -12,11 +12,11 @@ public class LandTest {
 
     @Test
     public void should_write_owner_back_to_map() {
-        LandOwnerChangeListener map = mock(LandOwnerChangeListener.class);
-        Land land = new Land(landName);
+        LandOwnerChangeListener listener = mock(LandOwnerChangeListener.class);
+        Land land = new Land(landName, listener);
 
         land.owned(new Owner(ownerName));
 
-        verify(map).landOwnerHasChanged(new LandOwnerHasChanged(landName, ownerName));
+        verify(listener).landOwnerHasChanged(landName, ownerName);
     }
 }

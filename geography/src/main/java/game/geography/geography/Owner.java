@@ -12,7 +12,6 @@ public class Owner {
     }
 
     public OwnerName named() {
-        // TODO this is only here for the tests. State is given outside. Grrr.
         return name;
     }
 }
