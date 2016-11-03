@@ -1,32 +1,23 @@
 package game.geography.geography;
 
-import java.util.HashMap;
-
 public class Map implements LandOwnerChangeListener {
 
-    private final HashMap<LandName, Land> landByName = new HashMap<>();
+    private final LandRepository landRepository = new InMemoryLandRepository();
 
     public Map() {
         // in first version we have two lands
-        save(new Land(new LandName("Stormland"), this));
-        save(new Land(new LandName("Rainland"), this));
+        landRepository.save(new Land(new LandName("Stormland"), this));
+        landRepository.save(new Land(new LandName("Rainland"), this));
+        // TODO later, maybe its own class of LandGenerator or Seed
     }
 
     public Land lookup(LandName landName) {
-        return findById(landName);
+        return landRepository.findById(landName);
     }
 
     @Override
     public void landOwnerHasChanged(Land land) {
-        save(land);
-    }
-
-    private Land findById(LandName landName) {
-        return landByName.get(landName);
-    }
-
-    private void save(Land land) {
-        landByName.put(land.named(), land);
+        landRepository.save(land);
     }
 
 }
