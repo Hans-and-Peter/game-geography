@@ -15,6 +15,7 @@
     <modules>
         <module>geography</module>
         <module>persistence</module>
+        <module>rest</module>
     </modules>
 
     <dependencies>
