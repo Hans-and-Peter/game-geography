@@ -12,6 +12,6 @@
     </parent>
 
     <artifactId>geography</artifactId>
-
+    <name>Game's Geography Core Domain</name>
 
 </project>

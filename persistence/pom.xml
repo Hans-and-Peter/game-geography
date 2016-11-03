@@ -11,6 +11,7 @@
     </parent>
 
     <artifactId>persistence</artifactId>
+    <name>Game's Geography Database Persistence</name>
 
     <dependencies>
         <dependency>
@@ -19,5 +20,5 @@
             <version>${project.parent.version}</version>
         </dependency>
     </dependencies>
-    
+
 </project>
