@@ -5,7 +5,7 @@ import org.junit.Test;
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.core.Is.is;
 
-public class OwnerTest {
+public class OccupyAcceptanceTest {
 
     private Map map = new Map();
 
@@ -16,6 +16,7 @@ public class OwnerTest {
 
         newOwner.occupy(land);
 
-        assertThat(land.ownedBy().named(), is(new OwnerName("King Ragnar")));
+        Land stormland = map.lookup(new LandName("Stormland"));
+        assertThat(stormland.ownedBy().named(), is(new OwnerName("King Ragnar")));
     }
 }
