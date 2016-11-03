@@ -2,7 +2,7 @@ package game.geography.geography;
 
 import java.util.HashMap;
 
-public class InMemoryLandRepository implements LandRepository {
+public class HashMapLandRepository implements LandRepository {
     private final HashMap<LandName, Land> landByName = new HashMap<>();
 
     @Override

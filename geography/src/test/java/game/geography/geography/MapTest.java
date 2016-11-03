@@ -9,7 +9,7 @@ import static org.hamcrest.core.IsNot.not;
 
 public class MapTest {
 
-    private Map map = new Map(new InMemoryLandRepository());
+    private Map map = new Map(new HashMapLandRepository());
     private final LandName landName = new LandName("Stormland");
 
     @Test
