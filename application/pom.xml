@@ -12,7 +12,12 @@
 
     <artifactId>application</artifactId>
     <packaging>war</packaging>
-    <name>Game's Geography Complete Application Glue</name>
+    <name>Game's Geography Application Glue</name>
+    <description>
+        Collection of all glue code that configures and binds together the while application.
+        Contains the sole dependency to Spring boot. Also contains System tests, which are
+        Service tests in this case.
+    </description>
 
     <dependencies>
 
