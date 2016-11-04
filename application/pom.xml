@@ -43,20 +43,28 @@
             <scope>test</scope>
         </dependency>
 
+        <!--
+        newest version used for ServiceTest but not compatible with restdocs
         <dependency>
             <groupId>io.rest-assured</groupId>
             <artifactId>rest-assured</artifactId>
             <version>3.0.1</version>
             <scope>test</scope>
         </dependency>
-
-        <!--
+        but used version is
+        -->
         <dependency>
-            <groupId>org.springframework.restdocs</groupId>
-            <artifactId>spring-restdocs-mockmvc</artifactId>
+            <groupId>com.jayway.restassured</groupId>
+            <artifactId>rest-assured</artifactId>
+            <version>2.8.0</version>
             <scope>test</scope>
         </dependency>
-        -->
+
+        <dependency>
+            <groupId>org.springframework.restdocs</groupId>
+            <artifactId>spring-restdocs-restassured</artifactId>
+            <scope>test</scope>
+        </dependency>
     </dependencies>
 
     <build>
