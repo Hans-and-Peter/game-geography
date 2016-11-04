@@ -1,0 +1,25 @@
+= Spring REST Docs REST Assured Land
+Hans and Peter;
+:doctype: book
+:icons: font
+:source-highlighter: highlightjs
+
+Geography application REST Docs.
+
+TODO
+
+Three snippets are produced. One showing how to make a request using cURL:
+
+include::{snippets}/land/curl-request.adoc[]
+
+One showing the HTTP request:
+
+include::{snippets}/land/http-request.adoc[]
+
+And one showing the HTTP response:
+
+include::{snippets}/land/http-response.adoc[]
+
+with fields
+
+include::{snippets}/land/response-fields.adoc[]
