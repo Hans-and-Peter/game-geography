@@ -1,15 +1,15 @@
 package game.geography.geography;
 
-public class Map implements LandOwnerChangeListener {
+public class Map implements LandChangeListener {
 
     private final LandRepository landRepository;
 
     public Map(LandRepository landRepository) {
         // in first version we have two lands
+        // TODO later, maybe add its own class of LandGenerator or Seed
         this.landRepository = landRepository;
         this.landRepository.save(new Land(new LandName("Stormland"), this));
         this.landRepository.save(new Land(new LandName("Rainland"), this));
-        // TODO later, maybe its own class of LandGenerator or Seed
     }
 
     public Land lookup(LandName landName) {
@@ -17,7 +17,7 @@ public class Map implements LandOwnerChangeListener {
     }
 
     @Override
-    public void landOwnerHasChanged(Land land) {
+    public void landHasChanged(Land land) {
         landRepository.save(land);
     }
 

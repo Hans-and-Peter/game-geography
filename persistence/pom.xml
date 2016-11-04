@@ -12,6 +12,9 @@
 
     <artifactId>persistence</artifactId>
     <name>Game's Geography Database Persistence</name>
+    <description>
+        Adapter with persistence outside of the core.
+    </description>
 
     <dependencies>
         <dependency>

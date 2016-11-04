@@ -23,16 +23,20 @@ public class LandEndpoint {
     @PUT
     @Path("/{landName}")
     @Produces(MediaType.APPLICATION_JSON)
-    public Response getIt(@PathParam("landName") String landName, LandUpdate update) {
-        Land land = map.lookup(new LandName(landName));
-        Owner newOwner = new Owner(new OwnerName(update.occupier)); // TODO Factory methods?
+    public Response occupy(@PathParam("landName") String landName, LandUpdate update) {
 
-        land.owned(newOwner);
+        Land land = map.lookup(new LandName(landName)); // TODO add factory methods
+        Owner newOwner = new Owner(new OwnerName(update.occupier));
 
+        newOwner.occupy(land);
+
+        return Response.ok(asResource(land)).build();
+    }
+
+    private LandResource asResource(Land land) {
         LandResource rto = new LandResource();
-        rto.landName = land.named().toString(); // TODO sicha nicht toString
-        rto.owner = land.ownedBy().named().toString(); //TODO sicha nicht to String
-
-        return Response.ok(rto).build();
+        rto.landName = land.named().toString(); // TODO (1) create domain extraction without breaking encapsulation, do not use toString
+        rto.owner = land.ownedBy().named().toString();
+        return rto;
     }
 }

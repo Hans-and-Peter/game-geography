@@ -12,6 +12,11 @@
 
     <artifactId>rest</artifactId>
     <name>Game's Geography REST Integration</name>
+    <description>
+        Jersey REST implementation of the Geography. Could be independent of Jersey
+        but it is easier to keep the dependencies bundled. There are no dependencies
+        on actual Jersey code.
+    </description>
 
     <dependencies>
         <dependency>
@@ -39,7 +44,6 @@
         </dependency>
         BUT need to keep in sync with versions from Jersey from Spring Boot :-(
         -->
-
     </dependencies>
 
 </project>

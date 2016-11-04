@@ -14,7 +14,6 @@ public class OwnerName {
         }
         OwnerName that = (OwnerName) other;
         return this.name.equals(that.name);
-
     }
 
     @Override

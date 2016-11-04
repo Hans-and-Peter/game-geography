@@ -13,5 +13,10 @@
 
     <artifactId>geography</artifactId>
     <name>Game's Geography Core Domain</name>
+    <description>
+        This contains the pure domain logic. There is no dependency on any
+        integration technology. This follows Hexagon architecture using
+        Double Loop TDD.
+    </description>
 
 </project>

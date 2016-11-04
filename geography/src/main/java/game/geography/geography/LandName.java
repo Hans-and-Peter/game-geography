@@ -14,7 +14,6 @@ public class LandName {
         }
         LandName that = (LandName) other;
         return this.name.equals(that.name);
-
     }
 
     @Override

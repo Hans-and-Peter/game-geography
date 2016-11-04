@@ -2,21 +2,23 @@ package game.geography.geography;
 
 public class Land {
     private final LandName name;
-    private final LandOwnerChangeListener listener;
+    private final LandChangeListener listener;
     private Owner owner;
 
-    public Land(LandName name, LandOwnerChangeListener listener) {
+    public Land(LandName name, LandChangeListener listener) {
         this.name = name;
         this.listener = listener;
     }
 
-    public void owned(Owner newOwner) {
+    // package class is only for core domain, not from outside!
+    // Only called from Owner.
+    void owned(Owner newOwner) {
         owner = newOwner;
         landOwnerHasChanged();
     }
 
     private void landOwnerHasChanged() {
-        listener.landOwnerHasChanged(this);
+        listener.landHasChanged(this);
     }
 
     public Owner ownedBy() {

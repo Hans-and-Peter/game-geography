@@ -5,5 +5,8 @@ package game.geography.rest;
  */
 public class LandUpdate {
 
+    /**
+     * Name of the occupier of that land, e.g. 'King Ragnar'.
+     */
     public String occupier;
 }

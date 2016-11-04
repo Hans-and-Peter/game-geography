@@ -16,6 +16,7 @@ import static org.hamcrest.core.Is.is;
 @RunWith(SpringRunner.class)
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
 public class ServiceTest {
+    // Tests the whole service. This is a system test of the service (an integration test).
 
     @LocalServerPort
     private int endpointPort;

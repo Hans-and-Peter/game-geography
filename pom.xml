@@ -10,6 +10,10 @@
     <version>1.0-SNAPSHOT</version>
 
     <name>Game's Geography Microservice</name>
+    <description>
+        Geography is a part of our game where you occupy land, harvest and build stuff to grow an empire.
+        Each subdomain is its own Microservice.
+    </description>
     <inceptionYear>2016</inceptionYear>
 
     <!-- We do not like to have this globally, but we do not want conflicts. -->
