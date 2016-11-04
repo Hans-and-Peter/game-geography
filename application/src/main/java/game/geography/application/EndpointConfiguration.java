@@ -5,9 +5,9 @@ import org.glassfish.jersey.server.ResourceConfig;
 import org.springframework.stereotype.Component;
 
 @Component
-public class JerseyConfig extends ResourceConfig {
+public class EndpointConfiguration extends ResourceConfig {
 
-    public JerseyConfig() {
+    public EndpointConfiguration() {
         register(LandEndpoint.class);
     }
 

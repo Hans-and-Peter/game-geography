@@ -16,7 +16,7 @@ import static org.hamcrest.core.Is.is;
 
 @RunWith(SpringRunner.class)
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
-public class SystemTest {
+public class ServiceTest {
 
     @LocalServerPort
     private int endpointPort;
@@ -35,10 +35,10 @@ public class SystemTest {
                 contentType("application/json").
                 body(landRequestJson).
         when().
-                put("/land/{landname}", "Stormland").
+                put("/land/{landName}", "Stormland").
         then().
                 statusCode(200).
-                body("landname", is("Stormland"),
+                body("landName", is("Stormland"),
                         "owner", is("Peter der Große"));
 
     }

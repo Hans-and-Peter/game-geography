@@ -30,7 +30,7 @@ public class LandEndpoint {
         land.owned(newOwner);
 
         LandResource rto = new LandResource();
-        rto.landname = land.named().toString(); // TODO sicha nicht toString
+        rto.landName = land.named().toString(); // TODO sicha nicht toString
         rto.owner = land.ownedBy().named().toString(); //TODO sicha nicht to String
 
         return Response.ok(rto).build();
