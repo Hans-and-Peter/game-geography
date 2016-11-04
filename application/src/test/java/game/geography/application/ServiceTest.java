@@ -12,6 +12,7 @@ import java.util.Map;
 import static com.jayway.restassured.RestAssured.given;
 import static org.hamcrest.core.Is.is;
 
+// see http://docs.spring.io/spring-boot/docs/current/reference/html/boot-features-testing.html
 @RunWith(SpringRunner.class)
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
 public class ServiceTest {
@@ -22,13 +23,15 @@ public class ServiceTest {
 //    changes port globally, but is ugly because of potential side effects
 //    @Before
 //    public void setPortForRestAssured() {
+//        // see http://g00glen00b.be/spring-boot-rest-assured/
 //        RestAssured.port = endpointPort;
 //    }
 
     @Test
     public void should_own_land_when_occupying() {
+        // see https://github.com/rest-assured/rest-assured/wiki/Usage#request-body
         Map<String, Object> landRequestJson = new HashMap<>();
-        landRequestJson.put("owner", "Peter der Große");
+        landRequestJson.put("occupier", "Peter der Große");
 
         given().
                 contentType("application/json").

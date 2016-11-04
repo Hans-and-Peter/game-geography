@@ -20,6 +20,7 @@ import java.util.Map;
 import static com.jayway.restassured.RestAssured.given;
 import static org.springframework.restdocs.operation.preprocess.Preprocessors.preprocessRequest;
 import static org.springframework.restdocs.payload.PayloadDocumentation.fieldWithPath;
+import static org.springframework.restdocs.payload.PayloadDocumentation.requestFields;
 import static org.springframework.restdocs.payload.PayloadDocumentation.responseFields;
 import static org.springframework.restdocs.restassured.RestAssuredRestDocumentation.document;
 import static org.springframework.restdocs.restassured.operation.preprocess.RestAssuredPreprocessors.modifyUris;
@@ -52,7 +53,7 @@ public class LandDocumentation {
     @Test
     public void document_owning_land_when_occupying() {
         Map<String, Object> landRequestJson = new HashMap<>();
-        landRequestJson.put("owner", "Peter der Große");
+        landRequestJson.put("occupier", "Peter der Große");
 
         given(this.documentationSpec).
                 contentType("application/json").
@@ -63,6 +64,8 @@ public class LandDocumentation {
                             .scheme("http")
                             .host("api.example.com")
                             .removePort()),
+                    requestFields(
+                            fieldWithPath("occupier").description("Name of the occupier of that land, e.g. 'King Ragnar'")),
                     responseFields(
                             fieldWithPath("landName").description("Name of the land, e.g. 'Stormland'"),
                             fieldWithPath("owner").description("Name of the owner of that land, e.g. 'King Ragnar'")))).
@@ -71,6 +74,6 @@ public class LandDocumentation {
                 put("/land/{landName}", "Stormland").
         then().
                 statusCode(200);
-    } // TODO request field
+    }
 
 }

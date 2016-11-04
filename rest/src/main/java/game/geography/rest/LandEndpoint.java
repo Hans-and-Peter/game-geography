@@ -25,7 +25,7 @@ public class LandEndpoint {
     @Produces(MediaType.APPLICATION_JSON)
     public Response getIt(@PathParam("landname") String landname, LandUpdate update) {
         Land land = map.lookup(new LandName(landname));
-        Owner newOwner = new Owner(new OwnerName(update.owner)); // TODO Factory methods?
+        Owner newOwner = new Owner(new OwnerName(update.occupier)); // TODO Factory methods?
 
         land.owned(newOwner);
 
