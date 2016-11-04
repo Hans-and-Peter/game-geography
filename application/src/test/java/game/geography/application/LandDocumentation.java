@@ -19,6 +19,8 @@ import java.util.Map;
 
 import static com.jayway.restassured.RestAssured.given;
 import static org.springframework.restdocs.operation.preprocess.Preprocessors.preprocessRequest;
+import static org.springframework.restdocs.operation.preprocess.Preprocessors.preprocessResponse;
+import static org.springframework.restdocs.operation.preprocess.Preprocessors.prettyPrint;
 import static org.springframework.restdocs.payload.PayloadDocumentation.fieldWithPath;
 import static org.springframework.restdocs.payload.PayloadDocumentation.requestFields;
 import static org.springframework.restdocs.payload.PayloadDocumentation.responseFields;
@@ -60,10 +62,14 @@ public class LandDocumentation {
                 body(landRequestJson).
                 accept("application/json").
             filter(document("land",
-                    preprocessRequest(modifyUris()
-                            .scheme("http")
-                            .host("api.example.com")
-                            .removePort()),
+                    preprocessRequest(
+                            modifyUris()
+                                .scheme("http")
+                                .host("api.example.com")
+                                .removePort(),
+                            prettyPrint()),
+                    preprocessResponse(
+                            prettyPrint()),
                     requestFields(
                             fieldWithPath("occupier").description("Name of the occupier of that land, e.g. 'King Ragnar'")),
                     responseFields(

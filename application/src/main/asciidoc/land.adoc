@@ -1,25 +1,30 @@
-= Spring REST Docs REST Assured Land
+= Geography - Land API
 Hans and Peter;
 :doctype: book
 :icons: font
 :source-highlighter: highlightjs
 
-Geography application REST Docs.
+The land resource allows operation on pieces of land,
+e.g. show its attributes or take ownership.
 
-TODO
+== Take Ownership
 
-Three snippets are produced. One showing how to make a request using cURL:
+To take ownership of a land, run the _curl_ command
 
 include::{snippets}/land/curl-request.adoc[]
 
-One showing the HTTP request:
+HTTP request:
 
 include::{snippets}/land/http-request.adoc[]
 
-And one showing the HTTP response:
+JSON field(s):
+
+include::{snippets}/land/request-fields.adoc[]
+
+On success you will get the HTTP response:
 
 include::{snippets}/land/http-response.adoc[]
 
-with fields
+JSON fields:
 
 include::{snippets}/land/response-fields.adoc[]
