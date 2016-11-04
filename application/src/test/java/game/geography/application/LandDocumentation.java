@@ -21,6 +21,7 @@ import static com.jayway.restassured.RestAssured.given;
 import static org.springframework.restdocs.operation.preprocess.Preprocessors.preprocessRequest;
 import static org.springframework.restdocs.operation.preprocess.Preprocessors.preprocessResponse;
 import static org.springframework.restdocs.operation.preprocess.Preprocessors.prettyPrint;
+import static org.springframework.restdocs.operation.preprocess.Preprocessors.removeHeaders;
 import static org.springframework.restdocs.payload.PayloadDocumentation.fieldWithPath;
 import static org.springframework.restdocs.payload.PayloadDocumentation.requestFields;
 import static org.springframework.restdocs.payload.PayloadDocumentation.responseFields;
@@ -42,12 +43,7 @@ public class LandDocumentation {
     private int endpointPort;
 
     @Before
-    public void setPortForRestAssured() {
-        RestAssured.port = endpointPort;
-    }
-
-    @Before
-    public void setUp() {
+    public void prepareDocumentation() {
         this.documentationSpec = new RequestSpecBuilder()
                 .addFilter(RestAssuredRestDocumentation.documentationConfiguration(restDocumentation)).build();
     }
@@ -67,14 +63,17 @@ public class LandDocumentation {
                                 .scheme("http")
                                 .host("api.example.com")
                                 .removePort(),
-                            prettyPrint()),
+                            prettyPrint(),
+                            removeHeaders("Content-Length", "Host")),
                     preprocessResponse(
-                            prettyPrint()),
+                            prettyPrint(),
+                            removeHeaders("Content-Length", "Date")),
                     requestFields(
                             fieldWithPath("occupier").description("Name of the occupier of that land, e.g. 'King Ragnar'")),
                     responseFields(
                             fieldWithPath("landName").description("Name of the land, e.g. 'Stormland'"),
                             fieldWithPath("owner").description("Name of the owner of that land, e.g. 'King Ragnar'")))).
+                            // TODO idea put these descriptions into annotations above the actual fields used for serialization.
         when().
                 port(endpointPort).
                 put("/land/{landName}", "Stormland").
