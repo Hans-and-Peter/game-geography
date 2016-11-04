@@ -21,10 +21,10 @@ public class LandEndpoint {
     private Map map;
 
     @PUT
-    @Path("/{landname}")
+    @Path("/{landName}")
     @Produces(MediaType.APPLICATION_JSON)
-    public Response getIt(@PathParam("landname") String landname, LandUpdate update) {
-        Land land = map.lookup(new LandName(landname));
+    public Response getIt(@PathParam("landName") String landName, LandUpdate update) {
+        Land land = map.lookup(new LandName(landName));
         Owner newOwner = new Owner(new OwnerName(update.occupier)); // TODO Factory methods?
 
         land.owned(newOwner);
