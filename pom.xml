@@ -12,12 +12,18 @@
     <name>Game's Geography Microservice</name>
     <inceptionYear>2016</inceptionYear>
 
-    <modules>
-        <module>geography</module>
-        <module>persistence</module>
-        <module>rest</module>
-        <module>application</module>
-    </modules>
+    <!-- We do not like to have this globally, but we do not want conflicts. -->
+    <dependencyManagement>
+        <dependencies>
+            <dependency>
+                <groupId>org.springframework.boot</groupId>
+                <artifactId>spring-boot-starter-parent</artifactId>
+                <version>${spring-boot-starter.version}</version>
+                <scope>import</scope>
+                <type>pom</type>
+            </dependency>
+        </dependencies>
+    </dependencyManagement>
 
     <dependencies>
         <dependency>
@@ -38,14 +44,20 @@
             <version>1.10.19</version>
             <scope>test</scope>
         </dependency>
-
-
     </dependencies>
+
+    <modules>
+        <module>geography</module>
+        <module>persistence</module>
+        <module>rest</module>
+        <module>application</module>
+    </modules>
 
     <properties>
         <maven.compiler.source>1.8</maven.compiler.source>
         <maven.compiler.target>1.8</maven.compiler.target>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <spring-boot-starter.version>1.4.1.RELEASE</spring-boot-starter.version>
     </properties>
 
 </project>

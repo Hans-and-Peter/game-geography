@@ -19,6 +19,11 @@
             <artifactId>geography</artifactId>
             <version>${project.parent.version}</version>
         </dependency>
+
+        <dependency>
+            <groupId>org.glassfish.jersey.core</groupId>
+            <artifactId>jersey-server</artifactId>
+        </dependency>
     </dependencies>
 
 </project>

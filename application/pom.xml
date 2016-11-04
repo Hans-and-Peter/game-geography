@@ -14,21 +14,15 @@
     <packaging>war</packaging>
     <name>Game's Geography Complete Application Glue</name>
 
-    <properties>
-        <spring-boot-starter.version>1.4.1.RELEASE</spring-boot-starter.version>
-    </properties>
-
     <dependencies>
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-jersey</artifactId>
-            <version>${spring-boot-starter.version}</version>
         </dependency>
 
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-test</artifactId>
-            <version>${spring-boot-starter.version}</version>
             <scope>test</scope>
         </dependency>
         <!--
