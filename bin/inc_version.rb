@@ -1,11 +1,11 @@
 #!/usr/bin/env ruby
-require_relative 'shell.rb'
+require_relative 'shell.rb' # requires Ruby 1.9
 
 # see http://stackoverflow.com/a/3545363
 mvn_command = 'mvn org.apache.maven.plugins:maven-help-plugin:evaluate -Dexpression=project.version'
 mvn_stdout = shell(mvn_command)
 
-version_pattern = /^(\d+.*-)(\d)$/
+version_pattern = /^(\d+.*-)(\d+)$/
 if mvn_stdout !~ version_pattern
   puts mvn_stdout
   raise "version number #{version_pattern} not found"
