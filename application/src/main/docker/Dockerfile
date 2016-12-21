@@ -1,5 +1,6 @@
 FROM frolvlad/alpine-oraclejdk8:slim
 MAINTAINER Hans and Peter
+# What is written by the application (Spring Boot)?
 VOLUME /tmp
 ADD hans-and-peter.game.geography.jar hans-and-peter.game.geography.jar
 
