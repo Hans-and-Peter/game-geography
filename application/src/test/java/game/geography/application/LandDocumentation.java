@@ -1,5 +1,7 @@
 package game.geography.application;
 
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import com.jayway.restassured.builder.RequestSpecBuilder;
 import com.jayway.restassured.specification.RequestSpecification;
 import org.junit.Before;
@@ -47,13 +49,15 @@ public class LandDocumentation {
     }
 
     @Test
-    public void document_owning_land_when_occupying() {
+    public void document_owning_land_when_occupying() throws JsonProcessingException {
         Map<String, Object> landRequestJson = new HashMap<>();
         landRequestJson.put("occupier", "Peter der Große");
 
         given(this.documentationSpec).
                 contentType("application/json").
-                body(landRequestJson).
+                // body(landRequestJson). // does not work in this test but in ServiceTest, why?
+                // body(landRequestJson, ObjectMapperType.JACKSON_2). // does not work, why
+                body(new ObjectMapper().writeValueAsString(landRequestJson)). // works
                 accept("application/json").
             filter(document("land",
                     preprocessRequest(
