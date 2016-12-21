@@ -32,7 +32,7 @@ public class LandEndpoint {
     }
 
     private Land occupyLand(String landName, String occupier) {
-        Land land = map.lookup(new LandName(landName)); // TODO add factory methods
+        Land land = map.lookup(new LandName(landName)); // TODO DDD: add factory methods
         Owner newOwner = new Owner(new OwnerName(occupier));
         newOwner.occupy(land);
         return land;
@@ -40,7 +40,7 @@ public class LandEndpoint {
 
     private LandResource asResource(Land land) {
         LandResource rto = new LandResource();
-        rto.landName = land.named().toString(); // TODO (1) create domain extraction without breaking encapsulation, do not use toString
+        rto.landName = land.named().toString(); // TODO (1) DDD: create domain extraction without breaking encapsulation, do not use toString
         rto.owner = land.ownedBy().named().toString();
         return rto;
     }

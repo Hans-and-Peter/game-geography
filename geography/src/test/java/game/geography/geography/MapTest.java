@@ -19,7 +19,8 @@ public class MapTest {
         assertThat(stormland.named(), is(landName));
     }
 
-    @Test @Ignore("we would like to write test that does not expose inner state like name")
+    // TODO DDD: we would like to write test that does not expose inner state like name
+    @Test @Ignore("we would like to write test that does not expose inner state like name") 
     public void should_return_land_consistently() {
         Land stormland1 = map.lookup(landName);
         Land stormland2 = map.lookup(landName);

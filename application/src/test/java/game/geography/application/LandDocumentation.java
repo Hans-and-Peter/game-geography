@@ -71,7 +71,7 @@ public class LandDocumentation {
                     responseFields(
                             fieldWithPath("landName").description("Name of the land, e.g. 'Stormland'."),
                             fieldWithPath("owner").description("Name of the owner of that land, e.g. 'King Ragnar'.")))).
-                            // TODO idea put these descriptions into annotations above the actual fields used for serialization.
+                            // TODO documentation: idea put these descriptions into annotations above the actual fields used for serialisation.
         when().
                 port(endpointPort).
                 put("/land/{landName}", "Stormland").

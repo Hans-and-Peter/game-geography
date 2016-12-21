@@ -6,7 +6,7 @@ public class Map implements LandChangeListener {
 
     public Map(LandRepository landRepository) {
         // in first version we have two lands
-        // TODO later, maybe add its own class of LandGenerator or Seed
+        // later, add its own class of LandGenerator or Seed
         this.landRepository = landRepository;
         this.landRepository.save(new Land(new LandName("Stormland"), this));
         this.landRepository.save(new Land(new LandName("Rainland"), this));
