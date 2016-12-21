@@ -24,13 +24,18 @@ public class LandEndpoint {
     @Path("/{landName}")
     @Produces(MediaType.APPLICATION_JSON)
     public Response occupy(@PathParam("landName") String landName, LandUpdate update) {
+        String occupier = update.occupier;
 
-        Land land = map.lookup(new LandName(landName)); // TODO add factory methods
-        Owner newOwner = new Owner(new OwnerName(update.occupier));
-
-        newOwner.occupy(land);
+        Land land = occupyLand(landName, occupier);
 
         return Response.ok(asResource(land)).build();
+    }
+
+    private Land occupyLand(String landName, String occupier) {
+        Land land = map.lookup(new LandName(landName)); // TODO add factory methods
+        Owner newOwner = new Owner(new OwnerName(occupier));
+        newOwner.occupy(land);
+        return land;
     }
 
     private LandResource asResource(Land land) {
