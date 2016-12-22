@@ -11,7 +11,9 @@ git commit -am "increase version"
 mvn test package
 
 ./bin/build_docker.rb
+# TODO docker: create save_docker_image.rb with variables, save and cp.
 docker save -o $docker_file $docker_image
 cp $docker_file docker_file.tar
 
+# TODO snapci: bug, we are not able to push
 git push origin master
