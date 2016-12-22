@@ -7,7 +7,7 @@
     <groupId>hans-and-peter.game.geography</groupId>
     <artifactId>multimodule</artifactId>
     <packaging>pom</packaging>
-    <version>1.0.0-4</version>
+    <version>1.0.0-5</version>
 
     <name>Game's Geography Microservice</name>
     <description>
