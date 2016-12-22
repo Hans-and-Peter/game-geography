@@ -1,0 +1,5 @@
+
+docker run -d -p 8080:8080 hanscoder/hans-and-peter.game.geography
+
+
+docker stop
