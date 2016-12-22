@@ -101,6 +101,7 @@
                 <version>2.19</version>
                 <configuration>
                     <includes>
+                        <include>**/*Test.java</include>
                         <include>**/*Documentation.java</include>
                     </includes>
                 </configuration>
