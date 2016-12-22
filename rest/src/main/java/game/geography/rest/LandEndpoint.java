@@ -22,7 +22,7 @@ public class LandEndpoint {
 
     @PUT
     @Path("/{landName}")
-    @Produces(MediaType.APPLICATION_JSON)
+    @Produces(MediaType.APPLICATION_JSON + ";charset=UTF-8")
     public Response occupy(@PathParam("landName") String landName, LandUpdate update) {
         String occupier = update.occupier;
 
