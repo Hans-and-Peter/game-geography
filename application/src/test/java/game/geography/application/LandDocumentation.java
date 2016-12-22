@@ -55,7 +55,8 @@ public class LandDocumentation {
 
         given(this.documentationSpec).
                 contentType("application/json").
-                // body(landRequestJson). // does not work in this test but in ServiceTest, why?
+                // TODO rest: Restassured.body(map) does not work on encodings != UTF8. Why?
+                // body(landRequestJson). // does not work, why?
                 // body(landRequestJson, ObjectMapperType.JACKSON_2). // does not work, why
                 body(new ObjectMapper().writeValueAsString(landRequestJson)). // works
                 accept("application/json").
