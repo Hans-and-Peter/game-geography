@@ -45,7 +45,6 @@ public class ServiceTest {
                 statusCode(200).
                 body("landName", is("Stormland"),
                         "owner", is("Peter der Große"));
-
     }
 
 }
