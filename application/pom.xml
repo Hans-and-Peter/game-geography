@@ -56,8 +56,6 @@
         <dependency>
             <groupId>com.jayway.restassured</groupId>
             <artifactId>rest-assured</artifactId>
-            <version>2.8.0</version>
-            <scope>test</scope>
         </dependency>
 
         <dependency>
@@ -154,9 +152,7 @@
             <plugin>
                 <groupId>com.spotify</groupId>
                 <artifactId>docker-maven-plugin</artifactId>
-                <version>0.4.13</version>
                 <configuration>
-                    <imageName>${docker.hub.user}/${project.groupId}:${project.version}</imageName>
                     <dockerDirectory>src/main/docker</dockerDirectory>
                     <!--
                     fails on Snap-CI. Use command line instead.
