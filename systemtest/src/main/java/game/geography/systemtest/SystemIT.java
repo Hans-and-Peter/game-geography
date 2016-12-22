@@ -15,10 +15,10 @@ import static org.hamcrest.core.Is.is;
 public class SystemIT {
     // TODO naming: find a better name of test, based on acceptance criterias? or requirements?
 
-    private String baseUri = "http://127.0.0.1";
-    private int endpointPort = 8080;
+    private String baseUri;
+    private int endpointPort;
 
-    // TODO @Before
+    @Before
     public void configureEnvironment() {
         baseUri = System.getProperty("game.environment.baseuri");
         endpointPort = Integer.getInteger("game.environment.port");

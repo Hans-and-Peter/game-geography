@@ -1,5 +1,8 @@
 
 docker run -d -p 8080:8080 hanscoder/hans-and-peter.game.geography
-
+cd systemtest
+mvn clean compile failsafe:integration-test failsafe:verify -Dgame.environment.baseuri=http://localhost -Dgame.environment.port=8080
+cd ..
 
 docker stop
+
