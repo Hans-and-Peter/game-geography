@@ -1,12 +1,17 @@
 chmod 755 ./bin/*.rb
 ./bin/inc_version.rb
-git commit -am "increase version"
+
 export artefact_version=$(./bin/get_version.rb)
-# TODO add tag with $artefact_version
-mvn test package
-./bin/build_docker.rb
 export docker_image=hanscoder/hans-and-peter.game.geography:$artefact_version
 export docker_file=hanscoder_hans-and-peter.game.geography_$artefact_version.tar
+
+git commit -am "increase version"
+# TODO maybe add tag with $artefact_version
+
+mvn test package
+
+./bin/build_docker.rb
 docker save -o $docker_file $docker_image
-# TODO maybe need to rename to constant file name
+cp $docker_file docker_file.tar
+
 git push origin master

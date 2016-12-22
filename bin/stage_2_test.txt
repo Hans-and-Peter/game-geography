@@ -1,8 +1,18 @@
+chmod 755 ./bin/*.rb
+# workaround for missing push
+./bin/inc_version.rb
 
-docker run -d -p 8080:8080 hanscoder/hans-and-peter.game.geography
+# TODO we do not know how to propagate variables
+export artefact_version=$(./bin/get_version.rb)
+export docker_image=hanscoder/hans-and-peter.game.geography:$artefact_version
+export docker_file=hanscoder_hans-and-peter.game.geography_$artefact_version.tar
+
+cp docker_file.tar $docker_file
+docker load -i $docker_file
+export docker_id=$(docker run -d -p 8080:8080 $docker_image)
+
 cd systemtest
 mvn clean compile failsafe:integration-test failsafe:verify -Dgame.environment.baseuri=http://localhost -Dgame.environment.port=8080
 cd ..
 
-docker stop
-
+docker stop $docker_id
