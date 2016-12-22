@@ -31,8 +31,10 @@ public class LandEndpoint {
         return Response.ok(asResource(land)).build();
     }
 
+    // TODO DDD: create command for occupyLand so I see the verb of the domain in classes, too.  
     private Land occupyLand(String landName, String occupier) {
-        Land land = map.lookup(new LandName(landName)); // TODO DDD: add factory methods
+        // TODO DDD: add factory methods for LandName, OwnerName etc.
+        Land land = map.lookup(new LandName(landName));
         Owner newOwner = new Owner(new OwnerName(occupier));
         newOwner.occupy(land);
         return land;
@@ -40,7 +42,8 @@ public class LandEndpoint {
 
     private LandResource asResource(Land land) {
         LandResource rto = new LandResource();
-        rto.landName = land.named().toString(); // TODO (1) DDD: create domain extraction without breaking encapsulation, do not use toString
+        // TODO (1) DDD: create domain extraction without breaking encapsulation, do not use toString
+        rto.landName = land.named().toString();
         rto.owner = land.ownedBy().named().toString();
         return rto;
     }

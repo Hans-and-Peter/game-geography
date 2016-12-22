@@ -6,12 +6,12 @@ export docker_image=hanscoder/hans-and-peter.game.geography:$artefact_version
 export docker_file=hanscoder_hans-and-peter.game.geography_$artefact_version.tar
 
 git commit -am "increase version"
-# TODO maybe add tag with $artefact_version
+# TODO docker: maybe add tag with $artefact_version
 
 mvn test package
 
 ./bin/build_docker.rb
-# TODO docker: create save_docker_image.rb with variables, save and cp.
+# TODO docker: create save_docker_image.rb with variables, save and copy.
 docker save -o $docker_file $docker_image
 cp $docker_file docker_file.tar
 

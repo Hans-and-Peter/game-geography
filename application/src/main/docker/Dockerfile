@@ -1,7 +1,7 @@
 FROM frolvlad/alpine-oraclejdk8:slim
 MAINTAINER Hans and Peter
 
-# TODO docker: get the description and final name from Maven (resource plugin)
+# TODO docker: get the description and final name from Maven (resource plugin) into Docker labels.
 # see https://docs.docker.com/engine/reference/builder/#/label
 LABEL name="Game's Geography Microservice" \
       description="Geography is a part of our game where you occupy land, harvest and build stuff to grow an empire."

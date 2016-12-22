@@ -75,7 +75,6 @@
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <spring-boot-starter.version>1.4.1.RELEASE</spring-boot-starter.version>
         <docker.hub.user>hanscoder</docker.hub.user>
-        <docker.image>${docker.hub.user}/${project.groupId}:${project.version}</docker.image>
     </properties>
 
 </project>

@@ -13,7 +13,7 @@ import static org.hamcrest.core.Is.is;
  * Tests the whole service. This is a system test of the deployed application.
  */
 public class SystemIT {
-    // TODO naming: find a better name of test, based on acceptance criterias? or requirements?
+    // TODO test: find a better name of test, based on acceptance criterias? or requirements?
 
     private String baseUri;
     private int endpointPort;

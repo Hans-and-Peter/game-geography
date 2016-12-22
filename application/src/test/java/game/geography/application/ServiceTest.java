@@ -19,7 +19,7 @@ import static org.hamcrest.core.Is.is;
 @RunWith(SpringRunner.class)
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
 public class ServiceTest {
-    // TODO naming: find a better name of test, based on service entry points? under test
+    // TODO test: find a better name of test, based on service entry points? under test
 
     @LocalServerPort
     private int endpointPort;
