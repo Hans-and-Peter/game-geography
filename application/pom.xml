@@ -156,11 +156,11 @@
                 <artifactId>docker-maven-plugin</artifactId>
                 <version>0.4.13</version>
                 <configuration>
-                    <imageName>${docker.hub.user}/${project.groupId}</imageName>
+                    <imageName>${docker.hub.user}/${project.groupId}:${project.version}</imageName>
                     <dockerDirectory>src/main/docker</dockerDirectory>
                     <!--
+                    fails on Snap-CI. Use command line instead.
                     <imageTags>
-                        <imageTag>${project.version}</imageTag>
                         <imageTag>latest</imageTag>
                     </imageTags>
                     -->
