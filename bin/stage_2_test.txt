@@ -16,3 +16,6 @@ mvn clean compile failsafe:integration-test failsafe:verify -Dgame.environment.b
 cd ..
 
 docker stop $docker_id
+
+docker login -e $DOCKER_EMAIL -u $DOCKER_USER -p $DOCKER_PASS
+docker push $docker_image
