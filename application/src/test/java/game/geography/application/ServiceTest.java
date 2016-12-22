@@ -6,6 +6,9 @@ import org.springframework.boot.context.embedded.LocalServerPort;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringRunner;
 
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.ObjectMapper;
+
 import java.util.HashMap;
 import java.util.Map;
 
@@ -32,14 +35,14 @@ public class ServiceTest {
 //    }
 
     @Test
-    public void should_own_land_when_occupying() {
+    public void should_own_land_when_occupying() throws JsonProcessingException {
         // see https://github.com/rest-assured/rest-assured/wiki/Usage#request-body
         Map<String, Object> landRequestJson = new HashMap<>();
         landRequestJson.put("occupier", "Peter der Große");
 
         given().
                 contentType("application/json").
-                body(landRequestJson).
+                body(new ObjectMapper().writeValueAsString(landRequestJson)). 
                 accept("application/json").
         when().
                 port(endpointPort).
