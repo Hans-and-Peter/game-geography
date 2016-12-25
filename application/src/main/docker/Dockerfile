@@ -13,5 +13,5 @@ ADD hans-and-peter.game.geography.jar hans-and-peter.game.geography.jar
 
 # needed if we need a change date
 # RUN sh -c 'touch /hans-and-peter.game.geography.jar'
-ENV JAVA_OPTS=""
+ENV JAVA_OPTS="-Dfile.encoding=UTF-8"
 ENTRYPOINT [ "sh", "-c", "java $JAVA_OPTS -jar /hans-and-peter.game.geography.jar" ]
