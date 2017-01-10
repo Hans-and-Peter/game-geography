@@ -10,7 +10,7 @@ export docker_file=hanscoder_hans-and-peter.game.geography_$artefact_version.tar
 # TODO docker: load_docker_image.rb similar to save.
 cp docker_file.tar $docker_file
 docker load -i $docker_file
-export docker_id=$(docker run -d -p 8080:8080 $docker_image)
+export docker_id=$( docker run -d -p 8080:8080 $docker_image )
 
 # TODO docker: we need to wait for Spring Boot application to start
 sleep 3

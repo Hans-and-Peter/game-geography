@@ -1,7 +1,8 @@
 chmod 755 ./bin/*.rb
 ./bin/inc_version.rb
 
-export artefact_version=$(./bin/get_version.rb)
+# TODO we do not see it the $() command fails
+export artefact_version=$( ./bin/get_version.rb )
 export docker_image=hanscoder/hans-and-peter.game.geography:$artefact_version
 export docker_file=hanscoder_hans-and-peter.game.geography_$artefact_version.tar
 
