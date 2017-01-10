@@ -52,6 +52,10 @@
         </license>
     </licenses>
 
+    <organization>
+        <name>hans-and-peter</name>
+    </organization>
+
     <scm>
         <connection>scm:git:git://github.com/Hans-and-Peter/game-geography.git</connection>
         <developerConnection>scm:git:https://github.com/Hans-and-Peter/game-geography.git</developerConnection>
