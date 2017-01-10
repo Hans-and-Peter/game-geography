@@ -15,6 +15,8 @@ export instance_id=$(aws ec2 run-instances --count 1 --image-id ami-e012d48f --i
 --output text --query 'Instances[*].InstanceId')
 
 mvn clean process-resources
+export task_id=$(aws ecs register-task-definition --cli-input-json file://application/target/aws/ecs_task_template.json \
+--output text --query 'taskDefinition.taskDefinitionArn')
 
 # TODO provision image to AWS
 

@@ -138,6 +138,7 @@
                         <goals>
                             <goal>copy-resources</goal>
                         </goals>
+                        <!-- TODO aws: create valid family name "hans-and-peter-game-geography" -->
                         <configuration>
                             <delimiters>
                                 <delimiter>${*}</delimiter>
