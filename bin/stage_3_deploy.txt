@@ -1,0 +1,28 @@
+chmod 755 ./bin/*.rb
+# TODO snapci: workaround for missing push
+./bin/inc_version.rb
+
+# TODO snapci: we do not know how to propagate variables
+export artefact_version=$(./bin/get_version.rb)
+export docker_image=hanscoder/hans-and-peter.game.geography:$artefact_version
+
+# add AWS_ACCESS_KEY_ID AWS_SECRET_ACCESS_KEY AWS_DEFAULT_REGION as secure environment variables
+
+# ami-e012d48f ... ECS base image for micro, see http://docs.aws.amazon.com/AmazonECS/latest/developerguide/launch_container_instance.html
+export instance_id=$(aws ec2 run-instances --count 1 --image-id ami-e012d48f --instance-type t2.micro --security-group-ids sg-e63e338e \
+--subnet-id subnet-43f2632b --iam-instance-profile Arn="arn:aws:iam::081374885386:instance-profile/ecsInstanceRole" \
+--associate-public-ip-address \
+--output text --query 'Instances[*].InstanceId')
+
+# TODO provision image to AWS
+
+cd systemtest
+mvn clean compile failsafe:integration-test failsafe:verify -Dgame.environment.baseuri=http://TODO.aws -Dgame.environment.port=8080
+cd ..
+
+aws ec2 terminate-instances --instance-ids "$instance_id" \
+--output text --query 'TerminatingInstances[*].CurrentState.Name'
+
+# TODO aws: change ELB to new instance
+# TODO aws: wait for instance to have zero load
+# TODO aws: terminate old instance

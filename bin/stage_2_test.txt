@@ -12,6 +12,9 @@ cp docker_file.tar $docker_file
 docker load -i $docker_file
 export docker_id=$(docker run -d -p 8080:8080 $docker_image)
 
+# TODO docker: we need to wait for Spring Boot application to start
+sleep 3
+
 cd systemtest
 mvn clean compile failsafe:integration-test failsafe:verify -Dgame.environment.baseuri=http://localhost -Dgame.environment.port=8080
 cd ..
