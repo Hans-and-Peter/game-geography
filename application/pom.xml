@@ -130,10 +130,29 @@
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-resources-plugin</artifactId>
-                <version>2.6</version>
+                <version>3.0.2</version>
                 <executions>
                     <execution>
-                        <id>copy-resources</id>
+                        <id>copy-aws-templates</id>
+                        <phase>generate-resources</phase>
+                        <goals>
+                            <goal>copy-resources</goal>
+                        </goals>
+                        <configuration>
+                            <delimiters>
+                                <delimiter>${*}</delimiter>
+                            </delimiters>
+                            <outputDirectory>${basedir}/target/aws</outputDirectory>
+                            <resources>
+                                <resource>
+                                    <directory>src/main/aws</directory>
+                                    <filtering>true</filtering>
+                                </resource>
+                            </resources>
+                        </configuration>
+                    </execution>
+                    <execution>
+                        <id>copy-generated-docs</id>
                         <phase>prepare-package</phase>
                         <goals>
                             <goal>copy-resources</goal>

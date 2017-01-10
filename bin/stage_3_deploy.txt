@@ -14,6 +14,8 @@ export instance_id=$(aws ec2 run-instances --count 1 --image-id ami-e012d48f --i
 --associate-public-ip-address \
 --output text --query 'Instances[*].InstanceId')
 
+mvn clean process-resources
+
 # TODO provision image to AWS
 
 cd systemtest
