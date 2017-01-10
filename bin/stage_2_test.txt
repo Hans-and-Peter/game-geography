@@ -1,9 +1,7 @@
 chmod 755 ./bin/*.rb
-# TODO snapci: workaround for missing push
-./bin/inc_version.rb
 
 # TODO snapci: we do not know how to propagate variables
-export artefact_version=$(./bin/get_version.rb)
+export artefact_version=$(cat artefact_version)
 export docker_image=hanscoder/hans-and-peter.game.geography:$artefact_version
 export docker_file=hanscoder_hans-and-peter.game.geography_$artefact_version.tar
 
