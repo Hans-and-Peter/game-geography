@@ -1,8 +1,6 @@
 {
-  "networkMode": "bridge",
   "containerDefinitions": [
     {
-      "volumesFrom": [],
       "memory": 300,
       "portMappings": [
         {
@@ -12,13 +10,9 @@
         }
       ],
       "essential": true,
-      "mountPoints": [],
       "name": "hans-and-peter-game-geography",
-      "environment": [],
-      "image": "${docker.hub.user}/${project.groupId}:${project.version}",
-      "cpu": 0
+      "image": "${docker.hub.user}/${project.groupId}:${project.version}"
     }
   ],
-  "volumes": [],
   "family": "hans-and-peter-game-geography"
 }
