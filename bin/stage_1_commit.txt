@@ -10,6 +10,7 @@ export docker_file=hanscoder_hans-and-peter.game.geography_$artefact_version.tar
 echo $artefact_version>artefact_version
 
 mvn clean test package
+cp application/target/aws/ecs_task_template.json ecs_task_template.json
 
 ./bin/build_docker.rb
 # TODO docker: create save_docker_image.rb with variables, save and copy.
