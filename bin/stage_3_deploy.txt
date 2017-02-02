@@ -9,7 +9,7 @@ export instance_id=$(aws ec2 run-instances --count 1 --image-id ami-e012d48f --i
 --associate-public-ip-address \
 --output text --query 'Instances[*].InstanceId')
 
-aws ec2 wait instance-running --instance-ids $instance_id
+aws ec2 wait instance-status-ok --instance-ids $instance_id
 
 export public_host=$( aws ec2 describe-instances --instance-id $instance_id \
 --output text --query 'Reservations[*].Instances[*].NetworkInterfaces[*].Association.PublicDnsName' )
