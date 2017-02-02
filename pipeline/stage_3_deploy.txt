@@ -30,7 +30,7 @@ cd ..
 # TODO build: finally
 ./pipeline/undeploy_service.rb $serviceName
 
-aws ec2 terminate-instances --instance-ids "$instance_id" > dev/nul
+./pipeline/stop_server.rb $instance_id
 
 # TODO aws: alternative/production way
 # change ELB to the new instance

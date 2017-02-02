@@ -10,7 +10,7 @@ remove_task_cmd = "aws ecs update-service --service \"#{service_name}\" --desire
 shell(remove_task_cmd)
 
 delete_service_cmd = "aws ecs delete-service --service \"#{service_name}\""
-SHELL(delete_service_cmd)
+shell(delete_service_cmd)
 
 # aws ecs update-service --service "${serviceName}" --desired-count 0 > dev/nul
 # aws ecs delete-service --service "${serviceName}" > dev/nul

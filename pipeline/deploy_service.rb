@@ -18,7 +18,7 @@ create_service_cmd = 'aws ecs create-service ' +
     '--service-name "game-geography-#{service_version}" ' +
     '--task-definition "hans-and-peter-game-geography:#{task_revision}" --desired-count 1 ' +
     "--output text --query 'service.serviceName'"
-service_name = SHELL(create_service_cmd)
+service_name = shell(create_service_cmd)
 
 puts service_name
 
@@ -30,6 +30,4 @@ puts service_name
 # export serviceName=$( aws ecs create-service --service-name "game-geography-$service_version" \
 # --task-definition "hans-and-peter-game-geography:$task_revision" --desired-count 1 \
 # --output text --query 'service.serviceName' )
-#
-# echo $serviceName
-#
+
