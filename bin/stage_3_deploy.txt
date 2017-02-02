@@ -3,24 +3,36 @@ export artefact_version=$(cat artefact_version)
 
 # add AWS_ACCESS_KEY_ID AWS_SECRET_ACCESS_KEY AWS_DEFAULT_REGION as secure environment variables
 
+# TODO aws: give proper name to instance
+# create new Docker container instance to have enough free instances
 # ami-e012d48f ... ECS base image for micro, see http://docs.aws.amazon.com/AmazonECS/latest/developerguide/launch_container_instance.html
 export instance_id=$(aws ec2 run-instances --count 1 --image-id ami-e012d48f --instance-type t2.micro --security-group-ids sg-e63e338e \
 --subnet-id subnet-43f2632b --iam-instance-profile Arn="arn:aws:iam::081374885386:instance-profile/ecsInstanceRole" \
 --associate-public-ip-address \
 --output text --query 'Instances[*].InstanceId')
 
-aws ec2 wait instance-status-ok --instance-ids $instance_id
-
-export public_host=$( aws ec2 describe-instances --instance-id $instance_id \
---output text --query 'Reservations[*].Instances[*].NetworkInterfaces[*].Association.PublicDnsName' )
+aws ec2 wait instance-status-ok --instance-ids "$instance_id"
 
 export task_revision=$(aws ecs register-task-definition --cli-input-json file://ecs_task_template.json \
 --output text --query 'taskDefinition.revision')
 
 # TODO templating: task-definition name duplicated with Maven and hardcoded
 export service_version=$( ruby -e 'puts "'$artefact_version'".gsub(/\./, "_")' )
-export serviceName=$( aws ecs create-service --service-name "game-geography-$service_version" --task-definition "hans-and-peter-game-geography:$task_revision" --desired-count 1 \
+export serviceName=$( aws ecs create-service --service-name "game-geography-$service_version" \
+--task-definition "hans-and-peter-game-geography:$task_revision" --desired-count 1 \
 --output text --query 'service.serviceName' )
+
+# wait for task to become active
+export task_id=$( aws ecs list-tasks --service-name "$serviceName" --output text --query 'taskArns' )
+aws ecs wait tasks-running --tasks "$task_id"
+# get container instance of task
+export task_container_id=$( aws ecs describe-tasks --tasks "$task_id" \
+--output text --query 'tasks[*].containerInstanceArn' )
+export task_instance_id=$( aws ecs describe-container-instances --container-instances "$task_container_id" \
+--output text --query 'containerInstances[*].ec2InstanceId' )
+# get public ip of container instance
+export public_host=$( aws ec2 describe-instances --instance-id $task_instance_id \
+--output text --query 'Reservations[*].Instances[*].NetworkInterfaces[*].Association.PublicDnsName' )
 
 cd systemtest
 mvn clean compile failsafe:integration-test failsafe:verify -Dgame.environment.baseuri=http://$public_host -Dgame.environment.port=8080
