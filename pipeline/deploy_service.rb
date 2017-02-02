@@ -4,7 +4,7 @@ require_relative 'lib/shell.rb'
 if ARGV.length == 0
   raise "need to pass artefact_version"
 end
-artefact_version = $ARGV[0]
+artefact_version = ARGV[0]
 
 register_task_cmd = "aws ecs register-task-definition " +
                     "--cli-input-json file://ecs_task_template.json " +
