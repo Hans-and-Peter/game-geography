@@ -3,7 +3,7 @@ chmod 755 ./pipeline/*.rb
 git commit -am "increase version"
 # TODO docker: maybe add tag with $artefact_version
 
-# TODO we do not see it the $() command fails
+# TODO build: we do not see it the $() command fails
 export artefact_version=$( ./pipeline/get_version.rb )
 export docker_image=hanscoder/hans-and-peter.game.geography:$artefact_version
 export docker_file=hanscoder_hans-and-peter.game.geography_$artefact_version.tar

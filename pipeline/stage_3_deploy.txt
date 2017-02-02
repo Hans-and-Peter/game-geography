@@ -12,7 +12,7 @@ cd systemtest
 mvn clean compile failsafe:integration-test failsafe:verify -Dgame.environment.baseuri=http://$public_host -Dgame.environment.port=8080 -Dgame.serviceVersion=$artefact_version
 cd ..
 
-# TODO build: finally
+# TODO build: remove service and instance in case of error, too.
 ./pipeline/undeploy_service.rb $serviceName
 ./pipeline/stop_server.rb $instance_id
 

@@ -8,7 +8,7 @@ cp docker_file.tar $docker_file
 docker load -i $docker_file
 export docker_id=$( docker run -d -p 8080:8080 $docker_image )
 
-# TODO docker: we need to wait for Spring Boot application to start
+# TODO docker: we need to wait for Spring Boot application to start (maybe Spring Boot has sth)
 sleep 3
 
 cd systemtest
