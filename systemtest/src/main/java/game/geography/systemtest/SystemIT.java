@@ -25,6 +25,20 @@ public class SystemIT {
     }
 
     @Test
+    public void should_have_same_version() {
+        given().
+                accept("application/json").
+        when().
+                baseUri(baseUri).
+                port(endpointPort).
+                get("/version").
+        then().
+                statusCode(200).
+                body("serviceVersion", is("1.0.0-17"));
+
+    }
+
+    @Test
     public void should_own_land_when_occupying() {
         Map<String, Object> landRequestJson = new HashMap<>();
         landRequestJson.put("occupier", "Peter der Große");

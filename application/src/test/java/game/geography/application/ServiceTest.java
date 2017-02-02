@@ -24,6 +24,7 @@ import static org.hamcrest.core.Is.is;
 public class ServiceTest {
     // TODO test: find a better name of test, based on service entry points? under test
 
+    @SuppressWarnings("unused") // set by Spring
     @LocalServerPort
     private int endpointPort;
 
@@ -33,6 +34,18 @@ public class ServiceTest {
 //        // see http://g00glen00b.be/spring-boot-rest-assured/
 //        RestAssured.port = endpointPort;
 //    }
+
+    @Test
+    public void should_have_same_version() {
+        given().
+                accept("application/json").
+        when().
+                port(endpointPort).
+                get("/version").
+        then().
+                statusCode(200).
+                body("serviceVersion", is("1.0.0-17"));
+    }
 
     @Test
     public void should_own_land_when_occupying() throws JsonProcessingException {
