@@ -23,7 +23,7 @@ public class SystemIT {
     public void configureEnvironment() {
         baseUri = System.getProperty("game.environment.baseuri");
         endpointPort = Integer.getInteger("game.environment.port");
-        serviceVersion = System.getenv("game.serviceVersion");
+        serviceVersion = System.getProperty("game.serviceVersion");
     }
 
     @Test
