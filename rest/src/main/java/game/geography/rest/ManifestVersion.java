@@ -1,9 +1,9 @@
 package game.geography.rest;
 
 import java.io.IOException;
+import java.io.InputStream;
 import java.net.URL;
 import java.util.Enumeration;
-import java.util.jar.Attributes;
 import java.util.jar.Manifest;
 
 public class ManifestVersion {
@@ -21,18 +21,22 @@ public class ManifestVersion {
         try {
             Enumeration<URL> resources = getClass().getClassLoader().getResources(MANIFEST_MF);
             while (resources.hasMoreElements()) {
-                Manifest manifest = new Manifest(resources.nextElement().openStream());
-                Attributes mainAttributes = manifest.getMainAttributes();
-                String v = mainAttributes.getValue(key);
-                if (v != null) {
-                    return v;
+                URL url = resources.nextElement();
+
+                try (InputStream in = url.openStream()) {
+                    Manifest manifest = new Manifest(in);
+                    String value = manifest.getMainAttributes().getValue(key);
+                    if (value != null) {
+                        return value;
+                    }
                 }
+
             }
         } catch (IOException e) {
-            e.printStackTrace();
+            return "no-version";
         }
 
-        return "local";
+        return "no-version";
     }
 
 }

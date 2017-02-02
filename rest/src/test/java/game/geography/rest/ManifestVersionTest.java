@@ -11,7 +11,7 @@ public class ManifestVersionTest {
     public void shouldReturnLocalForMissingVersion() {
         ManifestVersion manifestVersion = new ManifestVersion("missing-key");
         String extract = manifestVersion.extract();
-        assertThat(extract, is("local"));
+        assertThat(extract, is("no-version"));
     }
 
     @Test
