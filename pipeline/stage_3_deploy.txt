@@ -5,23 +5,8 @@ export artefact_version=$(cat artefact_version)
 # add AWS_ACCESS_KEY_ID AWS_SECRET_ACCESS_KEY AWS_DEFAULT_REGION as secure environment variables
 
 export instance_id=$( ./pipeline/start_server.rb )
-
 export serviceName=$( ./pipeline/deploy_service.rb $artefact_version )
-echo $serviceName
-
-# wait for task to become active
-aws ecs wait services-stable --services "$serviceName"
-export task_id=$( aws ecs list-tasks --service-name "$serviceName" --output text --query 'taskArns' )
-echo $task_id
-aws ecs wait tasks-running --tasks "$task_id"
-# get container instance of task
-export task_container_id=$( aws ecs describe-tasks --tasks "$task_id" \
---output text --query 'tasks[*].containerInstanceArn' )
-export task_instance_id=$( aws ecs describe-container-instances --container-instances "$task_container_id" \
---output text --query 'containerInstances[*].ec2InstanceId' )
-# get public ip of container instance
-export public_host=$( aws ec2 describe-instances --instance-id $task_instance_id \
---output text --query 'Reservations[*].Instances[*].NetworkInterfaces[*].Association.PublicDnsName' )
+export public_host=$( ./pipeline/list_endpoint.rb $serviceName )
 
 cd systemtest
 mvn clean compile failsafe:integration-test failsafe:verify -Dgame.environment.baseuri=http://$public_host -Dgame.environment.port=8080 -Dgame.serviceVersion=$artefact_version
@@ -29,7 +14,6 @@ cd ..
 
 # TODO build: finally
 ./pipeline/undeploy_service.rb $serviceName
-
 ./pipeline/stop_server.rb $instance_id
 
 # TODO aws: alternative/production way
