@@ -1,3 +1,5 @@
+#!/usr/bin/env bash
+
 chmod 755 ./pipeline/*.rb
 # TODO snapci: we do not know how to propagate variables
 export artefact_version=$(cat artefact_version)

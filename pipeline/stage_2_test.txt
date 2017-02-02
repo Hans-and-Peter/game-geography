@@ -1,3 +1,5 @@
+#!/usr/bin/env bash
+
 # TODO snapci: we do not know how to propagate variables
 export artefact_version=$(cat artefact_version)
 export docker_image=hanscoder/hans-and-peter.game.geography:$artefact_version

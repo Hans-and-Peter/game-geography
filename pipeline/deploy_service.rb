@@ -15,8 +15,8 @@ service_version = artefact_version.gsub(/\./, '_')
 
 # TODO templating: task-definition name duplicated with Maven and hardcoded
 create_service_cmd = 'aws ecs create-service ' +
-    '--service-name "game-geography-#{service_version}" ' +
-    '--task-definition "hans-and-peter-game-geography:#{task_revision}" --desired-count 1 ' +
+    "--service-name \"game-geography-#{service_version}\" " +
+    "--task-definition \"hans-and-peter-game-geography:#{task_revision}\" --desired-count 1 " +
     "--output text --query 'service.serviceName'"
 service_name = shell(create_service_cmd)
 

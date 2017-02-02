@@ -1,3 +1,5 @@
+#!/usr/bin/env bash
+
 chmod 755 ./pipeline/*.rb
 ./pipeline/inc_version.rb
 git commit -am "increase version"
