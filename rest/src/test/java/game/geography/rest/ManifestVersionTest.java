@@ -8,16 +8,16 @@ import static org.hamcrest.core.Is.is;
 public class ManifestVersionTest {
 
     @Test
-    public void should_return_local_for_non_existing_version() {
-        String extract = new ManifestVersion("missing-key").extract();
-
+    public void shouldReturnLocalForMissingVersion() {
+        ManifestVersion manifestVersion = new ManifestVersion("missing-key");
+        String extract = manifestVersion.extract();
         assertThat(extract, is("local"));
     }
 
     @Test
-    public void should_return_version_from_manifest() {
-        String extract = new ManifestVersion("Game-Service-Version").extract();
-
+    public void shouldExtractVersion() {
+        ManifestVersion manifestVersion = new ManifestVersion("Test-Existing-Version");
+        String extract = manifestVersion.extract();
         assertThat(extract, is("1.0.0-0"));
     }
 }

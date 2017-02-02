@@ -8,27 +8,30 @@ import java.util.jar.Manifest;
 
 public class ManifestVersion {
 
-    private String name;
+    private static final String MANIFEST_MF = "META-INF/MANIFEST.MF";
 
-    public ManifestVersion(String name) {
-        this.name = name;
+    private final String key;
+
+    public ManifestVersion(String key) {
+        this.key = key;
     }
 
     public String extract() {
         // see http://stackoverflow.com/a/1273196
         try {
-            Enumeration<URL> resources = getClass().getClassLoader().getResources("META-INF/MANIFEST.MF");
+            Enumeration<URL> resources = getClass().getClassLoader().getResources(MANIFEST_MF);
             while (resources.hasMoreElements()) {
                 Manifest manifest = new Manifest(resources.nextElement().openStream());
                 Attributes mainAttributes = manifest.getMainAttributes();
-                String v = mainAttributes.getValue(name);
+                String v = mainAttributes.getValue(key);
                 if (v != null) {
                     return v;
                 }
             }
         } catch (IOException e) {
-            // handle
+            e.printStackTrace();
         }
+
         return "local";
     }
 
