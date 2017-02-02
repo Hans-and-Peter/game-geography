@@ -24,6 +24,7 @@ export serviceName=$( aws ecs create-service --service-name "game-geography-$ser
 echo $serviceName
 
 # wait for task to become active
+aws ecs wait services-stable --services "$serviceName"
 export task_id=$( aws ecs list-tasks --service-name "$serviceName" --output text --query 'taskArns' )
 echo $task_id
 aws ecs wait tasks-running --tasks "$task_id"
