@@ -19,5 +19,5 @@ if __FILE__ == $0
   version, build =* get_version
   puts "#{version}#{build}"
   # use in scripts with
-  # artefact_version=$(./bin/get_version.rb)
+  # artefact_version=$(./pipeline/get_version.rb)
 end
