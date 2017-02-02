@@ -8,7 +8,7 @@ artefact_version = ARGV[0]
 
 register_task_cmd = "aws ecs register-task-definition " +
                     "--cli-input-json file://ecs_task_template.json " +
-                    "--output text --query 'taskDefinition.revision')"
+                    "--output text --query 'taskDefinition.revision'"
 task_revision = shell(register_task_cmd)
 
 service_version = artefact_version.gsub(/\./, '_')
