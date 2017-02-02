@@ -4,6 +4,10 @@ def shell(command)
   STDERR.puts command
   stdout = `#{command}`
 
+  if stdout
+    stdout = stdout.strip
+  end
+
   error_code = $?.exitstatus
   if error_code != 0
     STDERR.puts error_code
