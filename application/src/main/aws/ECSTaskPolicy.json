@@ -8,6 +8,9 @@
         "ecs:ListTaskDefinitions",
         "ecs:DescribeTaskDefinition",
         "ecs:CreateService",
+        "ecs:DescribeServices",
+        "ecs:UpdateService",
+        "ecs:DeleteService",
         "ecs:ListTasks",
         "ecs:DescribeTasks",
         "ecs:DescribeContainerInstances"
