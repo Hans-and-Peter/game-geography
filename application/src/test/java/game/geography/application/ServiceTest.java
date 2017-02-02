@@ -44,7 +44,7 @@ public class ServiceTest {
                 get("/version").
         then().
                 statusCode(200).
-                body("serviceVersion", is("1.0.0-17"));
+                body("serviceVersion", is("local"));
     }
 
     @Test

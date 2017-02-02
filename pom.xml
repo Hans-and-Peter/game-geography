@@ -79,7 +79,7 @@
                 <configuration>
                     <archive>
                         <manifestEntries>
-                            <ServiceVersion>${project.version}</ServiceVersion>
+                            <Game-Service-Version>${project.version}</Game-Service-Version>
                         </manifestEntries>
                     </archive>
                 </configuration>

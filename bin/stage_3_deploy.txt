@@ -38,7 +38,7 @@ export public_host=$( aws ec2 describe-instances --instance-id $task_instance_id
 --output text --query 'Reservations[*].Instances[*].NetworkInterfaces[*].Association.PublicDnsName' )
 
 cd systemtest
-mvn clean compile failsafe:integration-test failsafe:verify -Dgame.environment.baseuri=http://$public_host -Dgame.environment.port=8080
+mvn clean compile failsafe:integration-test failsafe:verify -Dgame.environment.baseuri=http://$public_host -Dgame.environment.port=8080 -Dgame.serviceVersion=$artefact_version
 cd ..
 
 # TODO build: finally

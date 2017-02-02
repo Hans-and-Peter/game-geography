@@ -17,11 +17,13 @@ public class SystemIT {
 
     private String baseUri;
     private int endpointPort;
+    private String serviceVersion;
 
     @Before
     public void configureEnvironment() {
         baseUri = System.getProperty("game.environment.baseuri");
         endpointPort = Integer.getInteger("game.environment.port");
+        serviceVersion = System.getenv("game.serviceVersion");
     }
 
     @Test
@@ -34,7 +36,7 @@ public class SystemIT {
                 get("/version").
         then().
                 statusCode(200).
-                body("serviceVersion", is("1.0.0-17"));
+                body("serviceVersion", is(serviceVersion));
 
     }
 

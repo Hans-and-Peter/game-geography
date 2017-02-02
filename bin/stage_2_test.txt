@@ -12,7 +12,7 @@ export docker_id=$( docker run -d -p 8080:8080 $docker_image )
 sleep 3
 
 cd systemtest
-mvn clean compile failsafe:integration-test failsafe:verify -Dgame.environment.baseuri=http://localhost -Dgame.environment.port=8080
+mvn clean compile failsafe:integration-test failsafe:verify -Dgame.environment.baseuri=http://localhost -Dgame.environment.port=8080 -Dgame.serviceVersion=$artefact_version
 cd ..
 
 docker stop $docker_id
