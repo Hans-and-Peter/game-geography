@@ -22,21 +22,18 @@ export service_version=$( ruby -e 'puts "'$artefact_version'".gsub(/\./, "_")' )
 export serviceName=$( aws ecs create-service --service-name "game-geography-$service_version" --task-definition "hans-and-peter-game-geography:$task_revision" --desired-count 1 \
 --output text --query 'service.serviceName' )
 
-sleep 1
-
 cd systemtest
 mvn clean compile failsafe:integration-test failsafe:verify -Dgame.environment.baseuri=http://$public_host -Dgame.environment.port=8080
 cd ..
 
-# TODO update service auf 0 Instanzen
-# TODO delete service
+# TODO build: finally
+aws ec2 update-service --service ${serviceName} --desired-count 0
+aws ec2 delete-service --service ${serviceName}
 
 aws ec2 terminate-instances --instance-ids "$instance_id" \
 --output text --query 'TerminatingInstances[*].CurrentState.Name'
 
-# TODO aws: change ELB to new instance
-# TODO aws: wait for instance to have zero load
-# TODO aws: terminate old instance
-
-
-aws ec2 wait instance-running --instance-ids i-0f83b69cd115864a0
+# TODO aws: alternative/production way
+# change ELB to the new instance
+# wait for old instance to have zero load
+# terminate old instance
