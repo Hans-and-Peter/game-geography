@@ -7,7 +7,7 @@
     <parent>
         <groupId>hans-and-peter.game.geography</groupId>
         <artifactId>multimodule</artifactId>
-        <version>1.0.0-13</version>
+        <version>1.0.0-14</version>
     </parent>
 
     <artifactId>rest</artifactId>
