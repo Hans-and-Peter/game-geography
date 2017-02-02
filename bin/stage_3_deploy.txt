@@ -21,9 +21,11 @@ export service_version=$( ruby -e 'puts "'$artefact_version'".gsub(/\./, "_")' )
 export serviceName=$( aws ecs create-service --service-name "game-geography-$service_version" \
 --task-definition "hans-and-peter-game-geography:$task_revision" --desired-count 1 \
 --output text --query 'service.serviceName' )
+echo $serviceName
 
 # wait for task to become active
 export task_id=$( aws ecs list-tasks --service-name "$serviceName" --output text --query 'taskArns' )
+echo $task_id
 aws ecs wait tasks-running --tasks "$task_id"
 # get container instance of task
 export task_container_id=$( aws ecs describe-tasks --tasks "$task_id" \
