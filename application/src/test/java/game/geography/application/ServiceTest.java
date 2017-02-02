@@ -14,6 +14,8 @@ import java.util.Map;
 
 import static com.jayway.restassured.RestAssured.given;
 import static org.hamcrest.core.Is.is;
+import static org.hamcrest.core.IsNot.not;
+import static org.hamcrest.text.IsEmptyString.isEmptyOrNullString;
 
 /**
  * Tests the whole service. This is a system test of the service (an integration test).
@@ -36,7 +38,7 @@ public class ServiceTest {
 //    }
 
     @Test
-    public void should_have_same_version() {
+    public void should_have_some_version() {
         given().
                 accept("application/json").
         when().
@@ -44,7 +46,7 @@ public class ServiceTest {
                 get("/version").
         then().
                 statusCode(200).
-                body("serviceVersion", is("local"));
+                body("serviceVersion", not(isEmptyOrNullString())); // local in dev | version after mvn package
     }
 
     @Test
@@ -55,7 +57,7 @@ public class ServiceTest {
 
         given().
                 contentType("application/json").
-                body(new ObjectMapper().writeValueAsString(landRequestJson)). 
+                body(new ObjectMapper().writeValueAsString(landRequestJson)).
                 accept("application/json").
         when().
                 port(endpointPort).
