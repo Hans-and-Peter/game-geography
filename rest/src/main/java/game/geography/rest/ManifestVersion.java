@@ -6,6 +6,7 @@ import java.net.URL;
 import java.util.Enumeration;
 import java.util.jar.Manifest;
 
+// TODO this class does not belong into rest pacckage, rather shared with all services.
 public class ManifestVersion {
 
     private static final String MANIFEST_MF = "META-INF/MANIFEST.MF";
@@ -23,6 +24,7 @@ public class ManifestVersion {
             while (resources.hasMoreElements()) {
                 URL url = resources.nextElement();
 
+                // TODO ugly code, refactor.
                 try (InputStream in = url.openStream()) {
                     Manifest manifest = new Manifest(in);
                     String value = manifest.getMainAttributes().getValue(key);
