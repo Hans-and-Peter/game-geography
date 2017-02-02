@@ -1,4 +1,5 @@
 FROM frolvlad/alpine-oraclejdk8:slim
+# TODO docker: the base image's version is unclear. Is this reproduceable?
 MAINTAINER Hans and Peter
 
 # TODO docker: get the description and final name from Maven (resource plugin) into Docker labels.

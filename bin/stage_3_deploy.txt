@@ -28,6 +28,7 @@ cd systemtest
 mvn clean compile failsafe:integration-test failsafe:verify -Dgame.environment.baseuri=http://$public_host -Dgame.environment.port=8080
 cd ..
 
+# TODO update service auf 0 Instanzen
 # TODO delete service
 
 aws ec2 terminate-instances --instance-ids "$instance_id" \
