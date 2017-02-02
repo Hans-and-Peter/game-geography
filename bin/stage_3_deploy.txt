@@ -42,11 +42,10 @@ mvn clean compile failsafe:integration-test failsafe:verify -Dgame.environment.b
 cd ..
 
 # TODO build: finally
-aws ecs update-service --service "${serviceName}" --desired-count 0
-aws ecs delete-service --service "${serviceName}"
+aws ecs update-service --service "${serviceName}" --desired-count 0 > dev/nul
+aws ecs delete-service --service "${serviceName}" > dev/nul
 
-aws ec2 terminate-instances --instance-ids "$instance_id" \
---output text --query 'TerminatingInstances[*].CurrentState.Name'
+aws ec2 terminate-instances --instance-ids "$instance_id" > dev/nul
 
 # TODO aws: alternative/production way
 # change ELB to the new instance
