@@ -1,0 +1,3 @@
+-Dgame.environment.baseuri=http://127.0.0.1
+-Dgame.environment.port=8080
+-Dgame.serviceVersion=no-version
